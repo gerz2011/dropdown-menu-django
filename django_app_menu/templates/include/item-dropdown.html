@@ -1,0 +1,10 @@
+{% load get_dropdown %}
+<ul class="q-dropdown">
+    {% for key in item.items.all %}
+        {% if key.items.all %}
+            <li>{{ key.title }}{% draw_dropdown_in key %}</li>
+        {% else %}
+            <li><a href="/{{ key.get_url }}/" class="{% active_item_menu key.get_url %}">{{ key.title }}</a></li>
+        {% endif %}
+    {% endfor %}
+</ul>

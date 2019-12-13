@@ -1,0 +1,40 @@
+{% extends "base-page.html" %}{% load static %}
+
+{% block style %}{% endblock%}
+
+
+{% block content %}
+<h1>Page one test site</h1>
+
+<p>url = {{ request.get_full_path }} </p>
+<hr>
+<hr>
+<div>
+    <ul>
+        <li>item</li>
+        <li>item</li>
+        <li>item</li>
+        <li>item
+            <ul>
+                <li>item-</li>
+                <li>item-</li>
+                <li>item-</li>
+                <li>item-
+                        <ul>
+                            <li>item--</li>
+                            <li>item--</li>
+                            <li>item--</li>
+                            <li>item--</li>
+                            <li>item--</li>
+                        </ul>
+                </li>
+                <li>item-</li>
+            </ul>
+        </li>
+        <li>item</li>
+    </ul>
+</div>
+
+{% endblock %}
+
+{% block script %}{% endblock%}
