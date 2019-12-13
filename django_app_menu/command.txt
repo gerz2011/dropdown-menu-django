@@ -25,3 +25,9 @@ python manage.py migrate
 
 
 python manage.py shell
+
+
+connection.queries
+
+from django.db import reset_queries
+reset_queries()
