@@ -23,3 +23,8 @@ urlpatterns = [
     path('', home_detail.as_view(), name='home'),
     path('<path>/', page_detail.as_view(), name='page'),
 ]
+
+
+from django.db import connection
+from django.db import reset_queries
+

@@ -5,3 +5,4 @@ class home_detail(TemplateView):
 
 class page_detail(TemplateView):
     template_name = 'site-page.html'
+

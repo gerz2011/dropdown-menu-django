@@ -1,5 +1,17 @@
 {% with menu as items %}
+<style>
+    .active {
+        background-color: cadetblue;
+        color: #FFF;
+    }
+</style>
 
-    {% include 'include/item-dropdown.html' %}
-
+<ul>
+    {% for key in items %}
+        {% if key.parent_id == None %}
+        <li><a href="/{{key.url}}/" class="">{{key.title}}</a> {% include 'include/item-dropdown.html' with i=key.id %}</li>
+        {% endif %}
+    {% endfor %}
+</ul>
+   
 {% endwith %}

@@ -1,32 +1,22 @@
 from django import template
-from django.db import connection
 from app_menu.models import Menu, MenuItem
-from django.db import reset_queries
-
 
 register = template.Library()
-  
+
+# сравниваем ссылку элемента меню с урл страницы, если совпадает- возвращаем строку activ
+@register.simple_tag(takes_context=True)
+def active_item_menu(context, path):
+    if path in context.request.get_full_path():
+        return 'active'
+    else:
+        return None
 
 @register.inclusion_tag('include/menu.html', takes_context=True)
 def draw_menu(context, slug):
+    print('====================================================')
     try:
-        # menu = Menu.objects.raw('SELECT * FROM app_menu_menuitem WHERE app_menu_menuitem.menu_id IN (1)')
-        # menu = MenuItem.objects.raw('SELECT * FROM app_menu_menuitem')
-        # menu = Menu.objects.prefetch_related('items').get(slug="main-menu")
-        menu = MenuItem.objects.filter(menu__slug=slug)
-        # menu = Menu.objects.get(slug=slug).filter()      
-
-        # print(menu)
-
-
-        print('======================================')
-        print('SQL запрос draw_menu - ', connection.queries)
-        print('запросов - ', len(connection.queries))
-        reset_queries()
-        print('--------------------------------------')
-
-        return {'menu': menu, 'context': context}
+        items = MenuItem.objects.filter(menu__slug=slug)
+        # items = MenuItem.objects.raw('SELECT * FROM app_menu_menuitem WHERE app_menu_menuitem.menu_slug = %s', [slug])
+        return {'menu': items, 'context': context}
     except Menu.DoesNotExist:
         return {'menu': '', 'context': context}
-
-

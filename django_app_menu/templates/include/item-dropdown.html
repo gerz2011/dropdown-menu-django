@@ -1,11 +1,8 @@
+{% load get_menu %}<!-- подключаем модуль get_menu.py -->
 <ul>
     {% for key in items %}
-        {% if key.items.all %}
-            <li><p>{{key}}</p>{% with key.items.all as items %} {% include 'include/item-dropdown.html' %} {% endwith %}</li>
-        {% else %}
-            <li><p>{{key}}</p></li>
+        {% if key.parent_id == i %}
+            <li><a href="/{{key.url}}/" class="{% active_item_menu key.url %}">{{key.title}}</a>{% include 'include/item-dropdown.html' with i=key.id %}</li>
         {% endif %}
     {% endfor %}
 </ul>
-
-<!-- я чуть не сдох пока искал решение с рекурсией и областью видимости  -->
