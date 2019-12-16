@@ -1,10 +1,11 @@
-{% load get_dropdown %}
-<ul class="q-dropdown">
-    {% for key in item.items.all %}
+<ul>
+    {% for key in items %}
         {% if key.items.all %}
-            <li>{{ key.title }}{% draw_dropdown_in key %}</li>
+            <li><p>{{key}}</p>{% with key.items.all as items %} {% include 'include/item-dropdown.html' %} {% endwith %}</li>
         {% else %}
-            <li><a href="/{{ key.get_url }}/" class="{% active_item_menu key.get_url %}">{{ key.title }}</a></li>
+            <li><p>{{key}}</p></li>
         {% endif %}
     {% endfor %}
 </ul>
+
+<!-- я чуть не сдох пока искал решение с рекурсией и областью видимости  -->

@@ -1,13 +1,7 @@
-{% extends "base-page.html" %}{% load static %}
-
-{% block style %}{% endblock%}
-
-
+{% extends "base-page.html" %}{% load static %} {% block style %}{% endblock%}
 {% block content %}
 <h1>Main page test site</h1>
 
-<p>url = {{ request.get_full_path }} </p>
+<p>url = {{ request.get_full_path }}</p>
 
-{% endblock %}
-
-{% block script %}{% endblock%}
+{% endblock %} {% block script %}{% endblock%}
